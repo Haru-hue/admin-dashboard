@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@radix-ui/react-collapsible": "^1.0.3",
+    "@react-jvectormap/core": "^1.0.4",
+    "@react-jvectormap/unitedstates": "^1.0.1",
     "@tremor/react": "^3.17.2",
     "classnames": "^2.5.1",
     "next": "14.2.3",

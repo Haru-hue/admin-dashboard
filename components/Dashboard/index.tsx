@@ -1,4 +1,8 @@
+import { ChatCard } from "../Cards";
 import DataCard from "../Cards/DataCard";
+import { AreaChart, SimpleBar } from "../Charts";
+import BrandTable from "../Tables/BrandTable";
+import Maps from "../common/Maps";
 
 const Dashboard = () => {
   return (
@@ -9,16 +13,16 @@ const Dashboard = () => {
         <DataCard name="customers" amount={400} />
       </div>
       <div className="space-y-5 py-5">
-        {/* <AreaChart />
-        <SimpleBar /> */}
+        <AreaChart />
+        <SimpleBar />
       </div>
 
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        {/* <MapOne /> */}
+        <Maps />
         <div className="col-span-12 xl:col-span-8">
-          {/* <TableOne /> */}
+          <BrandTable />
         </div>
-        {/* <ChatCard /> */}
+        <ChatCard />
       </div>
     </section>
   );
