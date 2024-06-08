@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import cn from "classnames";
 import { LuShoppingBag } from "react-icons/lu";
@@ -13,7 +12,6 @@ import ExpandMenu from "./ExpandMenu";
 import LinkItem from "./LinkItem";
 
 const Sidebar = () => {
-//   const pathname = usePathname();
   const { isSidebarOpen, toggleSidebar } = useSidebar((state) => state);
 
   return (
