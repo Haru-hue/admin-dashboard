@@ -6,12 +6,16 @@ import {
   ProgressBar,
   Text,
 } from "@tremor/react";
-import React from "react";
 
-const DataCard = (props: CardProps) => {
+type Props = {
+  name: string;
+  amount: number;
+};
+
+const DataCard = (props: Props) => {
   const { name, amount } = props;
   return (
-    <div className="capitalize font-normal">
+    <div>
       <Card className="mx-auto max-w-lg">
         <Flex alignItems="start">
           <div>

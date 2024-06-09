@@ -40,7 +40,7 @@ const Sidebar = () => {
           )}
         </Link>
         {isSidebarOpen && (
-          <FiMenu onClick={toggleSidebar} />
+          <FiMenu onClick={toggleSidebar} className="w-6 h-6" />
         )}
       </div>
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">

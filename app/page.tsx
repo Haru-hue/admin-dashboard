@@ -2,8 +2,8 @@ import Dashboard from "@/components/Dashboard";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JoshDevAdmin | Next.js Admin Dashboard",
-  description: "Magnedge Admin Dashboard Assessment | Next.js Admin Dashboard",
+  title: "ShakibAdmin | Next.js E-commerce Dashboard Template",
+  description: "This is Home Blog page for TailAdmin Next.js",
   // other metadata
 };
 

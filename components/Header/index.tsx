@@ -1,13 +1,16 @@
 import Link from "next/link";
-import Image from "next/image";
-import { useSidebar } from "@/hooks/useSidebar";
-import { FiMenu } from "react-icons/fi";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import DropdownNotification from "./DropdownNotification";
 import DropdownMessage from "./DropdownMessage";
+import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
+import Image from "next/image";
+import { FiMenu } from "react-icons/fi";
+import { useSidebar } from "@/hooks/useSidebar";
 
-const Header = () => {
+const Header = (props: {
+  sidebarOpen: string | boolean | undefined;
+  setSidebarOpen: (arg0: boolean) => void;
+}) => {
   const { toggleSidebar, isSidebarOpen } = useSidebar((state) => state);
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
@@ -75,12 +78,20 @@ const Header = () => {
           <ul className="flex items-center gap-2 2xsm:gap-4">
             {/* <!-- Dark Mode Toggler --> */}
             <DarkModeSwitcher />
+            {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
             <DropdownNotification />
+            {/* <!-- Notification Menu Area --> */}
+
+            {/* <!-- Chat Notification Area --> */}
             <DropdownMessage />
+            {/* <!-- Chat Notification Area --> */}
           </ul>
+
+          {/* <!-- User Area --> */}
           <DropdownUser />
+          {/* <!-- User Area --> */}
         </div>
       </div>
     </header>

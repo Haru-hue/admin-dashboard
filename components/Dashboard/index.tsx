@@ -1,8 +1,12 @@
-import { ChatCard } from "../Cards";
+"use client"
+import dynamic from "next/dynamic";
 import DataCard from "../Cards/DataCard";
 import { AreaChart, SimpleBar } from "../Charts";
 import BrandTable from "../Tables/BrandTable";
-import Maps from "../common/Maps";
+import { ChatCard } from "../Cards";
+const Maps = dynamic(() => import("../common/Maps"), {
+  ssr: false,
+});
 
 const Dashboard = () => {
   return (
