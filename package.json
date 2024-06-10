@@ -30,6 +30,7 @@
     "formik": "^2.4.6",
     "jsvectormap": "^1.5.3",
     "lucide-react": "^0.292.0",
+    "nanoid": "^5.0.7",
     "next": "latest",
     "postcss": "8.4.27",
     "react": "latest",

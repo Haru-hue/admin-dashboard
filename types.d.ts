@@ -22,8 +22,15 @@ type Brand = {
 };
 
 type UserForm = {
-  firstName: string,
-  lastName: string,
+  firstname: string,
+  lastname: string,
+  customerId?: string,
+  role?: string,
   email: string,
+  password: string,
+}
+
+type LoginForm = {
+  customerId: string,
   password: string,
 }

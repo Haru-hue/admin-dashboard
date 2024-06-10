@@ -3,11 +3,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import { CiLock, CiMail } from "react-icons/ci";
-import { Field, Form, Formik, FormikProvider, useFormik } from "formik";
+import { Field, Form, FormikProvider, useFormik } from "formik";
 import { userSchema, userValues } from "@/lib/schema";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/app/apis/account";
-import toast, { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from "react-hot-toast";
+import assignRandomRole from "@/utils/getRandomRole";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const formik = useFormik({
@@ -18,11 +20,22 @@ const SignUp = () => {
     validateOnChange: true,
     validateOnBlur: true,
   });
-
+  const router = useRouter();
   const mutation = useMutation({
-    mutationFn: (formData: UserForm) => registerUser(formData),
+    mutationFn: (formData: UserForm) => {
+      const userId =
+        formData.firstname.toLowerCase() + formData.lastname.toLowerCase();
+      return registerUser({
+        ...formData,
+        customerId: userId,
+        role: assignRandomRole(),
+      });
+    },
     onSuccess: () => {
       toast.success("User profile created successfully");
+      setTimeout(() => {
+        router.push("/auth/signin");
+      }, 1000);
     },
     onError: () => {
       toast.error("Error creating user profile");
@@ -31,7 +44,7 @@ const SignUp = () => {
 
   return (
     <section>
-      <Toaster/>
+      <Toaster />
       <Breadcrumb pageName="Sign Up" />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
@@ -142,17 +155,16 @@ const SignUp = () => {
                 </Form>
               </FormikProvider>
               <div className="mb-5">
-                    <button
-                      value="Create account"
-                      className="w-full cursor-pointer disabled:cursor-not-allowed rounded-lg disabled:bg-indigo-600 border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                      disabled={!formik.isValid || mutation.isPending}
-                      onClick={() => {
-                        mutation.mutate(formik.values);
-                      }}
-                    >
-                      Create Account
-                    </button>
-                  </div>
+                <button
+                  className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90 disabled:cursor-not-allowed disabled:bg-indigo-600"
+                  disabled={!formik.isValid || mutation.isPending}
+                  onClick={() => {
+                    mutation.mutate(formik.values);
+                  }}
+                >
+                  Create Account
+                </button>
+              </div>
               <div className="mt-6 text-center">
                 <p>
                   Already have an account?{" "}

@@ -23,7 +23,7 @@ const Header = (props: {
               aria-hidden={!isSidebarOpen}
               aria-controls="sidebar"
             >
-              <FiMenu className="h-6 w-6 text-white" />
+              <FiMenu className="h-6 w-6 dark:text-white" />
             </button>
           )}
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -32,7 +32,7 @@ const Header = (props: {
             <Image
               width={32}
               height={32}
-              src={"/images/logo/logo-icon.svg"}
+              src={"/images/user/user-01.png"}
               alt="Logo"
             />
           </Link>
