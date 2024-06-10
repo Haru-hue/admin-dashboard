@@ -28,6 +28,7 @@ const SignIn = () => {
         router.push('/');
       }, 1500);
       localStorage.setItem('userToken', JSON.stringify(res?.data?.data?.userToken));
+      localStorage.setItem('localUser', JSON.stringify(res?.data?.data?.userInfo));
       toast.success("Login successful");
     },
     onError: () => {

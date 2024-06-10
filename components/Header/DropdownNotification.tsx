@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import useLocalStorage from '@/hooks/useLocalStorage';
 
 const DropdownNotification = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -7,7 +8,8 @@ const DropdownNotification = () => {
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
-
+  const [userInfo] = useLocalStorage('localUser');
+  console.log(userInfo)
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!dropdown.current) return;

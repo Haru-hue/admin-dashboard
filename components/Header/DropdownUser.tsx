@@ -5,12 +5,18 @@ import { IoLogInOutline } from "react-icons/io5";
 import { PiGear } from "react-icons/pi";
 import { IoIosContact } from "react-icons/io";
 import { LuUser2 } from "react-icons/lu";
+import { useRouter } from "next/navigation";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
-
+  const router = useRouter()
+  const handleLogout = () => {
+    localStorage.clear();
+    router.push('/auth/signin')
+  }
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
@@ -37,9 +43,10 @@ const DropdownUser = () => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
+  const [userInfo] = useLocalStorage('localUser');
   return (
     <div className="relative">
-      <Link
+      {userInfo ? <Link
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center gap-4"
@@ -47,7 +54,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Joshua Uko
+            {userInfo?.firstname} {userInfo?.lastname}
           </span>
           <span className="block text-xs">Full Stack Developer</span>
         </span>
@@ -61,7 +68,11 @@ const DropdownUser = () => {
             alt="User"
           />
         </span>
-      </Link>
+      </Link> : (
+        <Link href='/auth/signin'>
+          <LuUser2 size={23} />
+        </Link>
+      )}
 
       {/* <!-- Dropdown Start --> */}
       <div
@@ -93,7 +104,7 @@ const DropdownUser = () => {
           </li>
           <li>
             <Link
-              href="/pages/settings"
+              href="/settings"
               className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
             >
               <PiGear size={22} />
@@ -101,7 +112,7 @@ const DropdownUser = () => {
             </Link>
           </li>
         </ul>
-        <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+        <button onClick={() => handleLogout()} className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
           <IoLogInOutline size={22} />
           Log Out
         </button>

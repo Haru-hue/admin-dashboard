@@ -5,6 +5,10 @@
 @import url('./styles/themes.css');
 @import url('./styles/data-tables.css');
 
+body, html {
+  font-family: 'Satoshi', sans-serif;
+}
+
 @layer utilities {
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {

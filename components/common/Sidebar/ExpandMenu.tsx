@@ -48,10 +48,7 @@ const ExpandMenu = (props: Props) => {
               />
             </div>
           </div>
-        ) : (
-            <div>ll</div>
-        //   <LinkItem title="Home" href="/" icon={icon}></LinkItem>ll
-        )}
+        ) : <div>{icon}</div>}
       </CollapsibleTrigger>
       <CollapsibleContent className={s.CollapsibleContent}>
         <div className="px-3">{isSidebarOpen && children}</div>

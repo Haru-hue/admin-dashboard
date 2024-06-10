@@ -52,40 +52,35 @@ const Sidebar = () => {
               })}
             >
               <li>
-                <ExpandMenu
-                  name="Homepage"
-                  icon={<MdOutlineDashboard />}
-                >
-                  <LinkItem
-                    icon={<LuShoppingBag />}
-                    title="E-commerce"
+              <LinkItem
+                    icon={<MdOutlineDashboard size={23} />}
+                    title="Dashboard"
                     href="/"
                   />
-                </ExpandMenu>
               </li>
               <li>
                 <LinkItem
                   title="Calendar"
                   href="/calendar"
-                  icon={<FaCalendarAlt />}
+                  icon={<FaCalendarAlt size={23} />}
                 ></LinkItem>
               </li>
               <li>
                 <LinkItem
                   title="Settings"
                   href="/settings"
-                  icon={<CiSettings />}
+                  icon={<CiSettings size={25} />}
                 ></LinkItem>
               </li>
               <li>
                 <LinkItem
                   title="Profile"
                   href="/profile"
-                  icon={<CiUser />}
+                  icon={<CiUser size={25} />}
                 ></LinkItem>
               </li>
               <li>
-                <ExpandMenu name="Auth" icon={<GrInsecure />}>
+                <ExpandMenu name="Auth" icon={<GrInsecure size={25} />}>
                   <LinkItem
                     title="Sign In"
                     href="/auth/signin"
