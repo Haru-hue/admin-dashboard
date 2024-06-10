@@ -72,13 +72,6 @@ const Sidebar = () => {
               </li>
               <li>
                 <LinkItem
-                  title="Tables"
-                  href="/tables"
-                  icon={<MdOutlineSpaceDashboard />}
-                ></LinkItem>
-              </li>
-              <li>
-                <LinkItem
                   title="Settings"
                   href="/settings"
                   icon={<CiSettings />}

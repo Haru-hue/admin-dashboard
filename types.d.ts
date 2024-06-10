@@ -20,3 +20,10 @@ type Brand = {
   sales: number;
   conversion: number;
 };
+
+type UserForm = {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+}

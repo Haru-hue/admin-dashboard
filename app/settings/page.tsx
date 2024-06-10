@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Settings Page | Next.js E-commerce Dashboard Template",
-  description: "This is Settings page for ShakibAdmin Next.js",
+  description: "This is Settings page for JoshDevAdmin Next.js",
   // other metadata
 };
 
@@ -63,8 +63,8 @@ const Settings = () => {
                           type="text"
                           name="fullName"
                           id="fullName"
-                          placeholder="Sadman Shakib"
-                          defaultValue="Sadman Shakib"
+                          placeholder="Sadman JoshDev"
+                          defaultValue="Sadman JoshDev"
                         />
                       </div>
                     </div>
@@ -125,8 +125,8 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="sm.shakib7@gmail.com"
-                        defaultValue="sm.shakib007@gmail.com"
+                        placeholder="sm.JoshDev7@gmail.com"
+                        defaultValue="sm.JoshDev007@gmail.com"
                       />
                     </div>
                   </div>
@@ -143,7 +143,7 @@ const Settings = () => {
                       type="text"
                       name="Username"
                       id="Username"
-                      placeholder="xsadmanshakib"
+                      placeholder="xsadmanJoshDev"
                       defaultValue="devidjhon24"
                     />
                   </div>
@@ -229,7 +229,7 @@ const Settings = () => {
                     <div className="h-14 w-14 rounded-full">
                       <Image
                         className="rounded-full"
-                        src={"/images/sadmanshakib.jpg"}
+                        src={"/images/sadmanJoshDev.jpg"}
                         width={55}
                         height={55}
                         alt="User"

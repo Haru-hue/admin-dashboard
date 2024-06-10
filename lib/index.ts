@@ -1,3 +1,5 @@
+export const API_LINK = 'https://accountmanagement.onrender.com/api/'
+
 export const brandData: Brand[] = [
   {
     logo: "/images/brand/brand-01.svg",
