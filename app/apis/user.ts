@@ -1,7 +1,7 @@
 import { API_LINK } from "@/lib";
 import axios from "axios";
 
-export const fetchAllUsers = async (token: StoredValue) => {
+export const fetchAllUsers = async (token: any) => {
   const BEARER_TOKEN = {
     headers: {
       Authorization: `Bearer ${token}`,

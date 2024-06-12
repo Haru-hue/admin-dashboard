@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
 // Custom hook to listen for changes in localStorage
-const useLocalStorage = <T extends StoredValue>(key: string | string[]): [T, (k: string, newValue: T) => void] => {
+const useLocalStorage = <T extends any>(key: string | string[]): [T, (k: string, newValue: T) => void] => {
   const isArray = Array.isArray(key);
   const [value, setValue] = useState<T>(() => {
     // Get initial value from localStorage
     if (typeof window !== "undefined") {
-      let storedValue: StoredValue = isArray ? {} : null;
+      let storedValue: any = isArray ? [] : null;
 
       if (isArray) {
         (key as string[]).forEach((k) => {
@@ -37,7 +37,7 @@ const useLocalStorage = <T extends StoredValue>(key: string | string[]): [T, (k:
   useEffect(() => {
     // Function to handle changes in localStorage
     const handleChange = () => {
-      let storedValue: StoredValue = isArray ? {} : null;
+      let storedValue: any = isArray ? [] : null;
 
       if (isArray) {
         (key as string[]).forEach((k) => {

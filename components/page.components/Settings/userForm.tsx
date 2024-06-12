@@ -3,7 +3,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { CiMail, CiUser } from "react-icons/ci";
 
 export const SettingsForm = () => {
-    const [userInfo] = useLocalStorage('localUser');
+    const [userInfo] = useLocalStorage<any>('localUser');
     const userName = userInfo?.firstname.toLowerCase() + userInfo?.lastname.toLowerCase()
   return (
     <div className="p-7">

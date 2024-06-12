@@ -32,7 +32,7 @@ export default function RootLayout({
     if (!IS_USER_TOKEN_AVAILABLE && !isAccessibleWithOutToken) {
       router.push('/auth/signin');
     }
-  }, [IS_USER_TOKEN_AVAILABLE]);
+  }, [IS_USER_TOKEN_AVAILABLE, pathname]);
 
   return (
     <html lang="en" className={cn(

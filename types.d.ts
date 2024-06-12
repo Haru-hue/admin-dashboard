@@ -56,5 +56,3 @@ type Users = {
   email: string,
   createdAt: string,
 }
-
-type StoredValue = any;

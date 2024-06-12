@@ -9,7 +9,7 @@ import Loader from "../common/Loader";
 
 const Dashboard = () => {
   const [token] = useLocalStorage("userToken");
-  const [loggedInUser] = useLocalStorage("localUser");
+  const [loggedInUser] = useLocalStorage<any>("localUser");
   const allUsers = useQuery({
     queryKey: ['users'],
     queryFn: () => fetchAllUsers(token),

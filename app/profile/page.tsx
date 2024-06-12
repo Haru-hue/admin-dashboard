@@ -83,10 +83,10 @@ const Profile = () => {
                 About Me
               </h4>
               <p className="mt-4.5">
-                Hi there, I full-stack developer with a focus on creating
+                Hi there, I am a full-stack developer with a focus on creating
                 exceptional user experiences through cutting-edge front-end
                 interfaces. My toolset includes MERN Stack, Typescript, and
-                Next.js. I'm also well-versed in essential collaboration tools
+                Next.js. I&apos;m also well-versed in essential collaboration tools
                 like Git and GitHub, and I thrive in Agile development
                 environments.
               </p>
