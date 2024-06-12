@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import cn from "classnames";
-import { LuShoppingBag } from "react-icons/lu";
-import { FaCalendarAlt } from "react-icons/fa";
-import { MdOutlineDashboard, MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineDashboard } from "react-icons/md";
 import { CiSettings, CiUser } from "react-icons/ci";
 import { GrInsecure } from "react-icons/gr";
 import { FiMenu } from "react-icons/fi";
@@ -57,13 +55,6 @@ const Sidebar = () => {
                     title="Dashboard"
                     href="/"
                   />
-              </li>
-              <li>
-                <LinkItem
-                  title="Calendar"
-                  href="/calendar"
-                  icon={<FaCalendarAlt size={23} />}
-                ></LinkItem>
               </li>
               <li>
                 <LinkItem

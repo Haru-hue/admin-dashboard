@@ -24,10 +24,11 @@ const SignIn = () => {
   const mutation = useMutation({
     mutationFn: (formData: LoginForm) => loginUser(formData),
     onSuccess: async (res) => {
-      setTimeout(() => {
-        router.push('/');
-      }, 1500);
-      localStorage.setItem('userToken', JSON.stringify(res?.data?.data?.userToken));
+      // setTimeout(() => {
+      //   router.push('/');
+      // }, 1500);
+      console.log(res)
+      localStorage.setItem('userToken', JSON.stringify(res?.data?.data?.token));
       localStorage.setItem('localUser', JSON.stringify(res?.data?.data?.userInfo));
       toast.success("Login successful");
     },

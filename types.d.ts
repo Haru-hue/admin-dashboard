@@ -34,3 +34,24 @@ type LoginForm = {
   customerId: string,
   password: string,
 }
+
+type RowData = {
+  [key: string]: any
+}
+
+type Column = {
+  Header: string,
+  accessor: (row: RowData) => JSX.Element,
+}
+
+type TableData = {
+  columns: Column[],
+  data: RowData[],
+}
+
+type Users = {
+  firstname: string,
+  lastname: string,
+  email: string,
+  createdAt: string,
+}
