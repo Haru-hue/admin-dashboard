@@ -7,6 +7,8 @@ import Sidebar from "@/components/common/Sidebar";
 import { Providers } from "./providers";
 import useLocalStorage from "@/hooks/useLocalStorage";
 import { usePathname, useRouter } from "next/navigation";
+import useColorMode from "@/hooks/useColorMode";
+import cn from "classnames";
 
 export default function RootLayout({
   children,
@@ -16,6 +18,7 @@ export default function RootLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
+  const [colorMode] = useColorMode()
   const router = useRouter()
   const pathname = usePathname()
 
@@ -32,10 +35,12 @@ export default function RootLayout({
   }, [IS_USER_TOKEN_AVAILABLE]);
 
   return (
-    <html lang="en">
+    <html lang="en" className={cn(
+      colorMode === 'dark'? 'dark' : ''
+    )}>
       <body suppressHydrationWarning={true}>
         <Providers>
-          <div className="dark:bg-black dark:text-body">
+          <div className="dark:bg-black dark:text-bodydark">
             {loading ? (
               <Loader />
             ) : (

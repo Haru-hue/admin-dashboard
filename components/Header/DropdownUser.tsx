@@ -6,17 +6,19 @@ import { PiGear } from "react-icons/pi";
 import { IoIosContact } from "react-icons/io";
 import { LuUser2 } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import useLocalStorage from "@/hooks/useLocalStorage";
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userInfo, setUserInfo] = useState<any>(null);
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
   const router = useRouter()
   const handleLogout = () => {
     localStorage.clear();
+    setUserInfo(null)
     router.push('/auth/signin')
   }
+  const localUser = localStorage.getItem('localUser');
   // close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
@@ -42,8 +44,23 @@ const DropdownUser = () => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
+  useEffect(() => {
+    const handleStorageChange = () => {
+      // Update the userInfo state with the new value from local storage
+      setUserInfo(localUser ? JSON.parse(localUser) : null);
+    };
 
-  const [userInfo] = useLocalStorage('localUser');
+    // Add event listener for local storage changes
+    window.addEventListener('storage', handleStorageChange);
+
+    // Call the handler right away to populate the initial state
+    handleStorageChange();
+
+    // Cleanup the event listener
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [localUser]);
+
+
   return (
     <div className="relative">
       {userInfo ? <Link
@@ -54,7 +71,7 @@ const DropdownUser = () => {
       >
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            {userInfo?.firstname} {userInfo?.lastname}
+            {userInfo.firstname} {userInfo.lastname}
           </span>
           <span className="block text-xs">Full Stack Developer</span>
         </span>
