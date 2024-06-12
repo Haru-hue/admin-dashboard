@@ -18,7 +18,7 @@ const Table = ({ columns, data }: TableData) => {
             {data.map((row, key) => (
               <tr key={key}>
                 {columns.map((column, index) => (
-                  <td key={index} className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <td key={index} className="border-b border-[#eee] py-5 px-4 dark:border-strokedark dark:text-white">
                     {column.accessor(row)}
                   </td>
                 ))}

@@ -8,16 +8,19 @@ import { FiMenu } from "react-icons/fi";
 import { useSidebar } from "@/hooks/useSidebar";
 import ExpandMenu from "./ExpandMenu";
 import LinkItem from "./LinkItem";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar((state) => state);
-
+  const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
+  const isLinkDisabled = IS_USER_TOKEN_AVAILABLE ? true : false;
   return (
     <aside
       className={cn(
-        `absolute left-0 top-0 z-9999 flex h-screen w-20 flex-col overflow-y-hidden bg-black duration-300 ease-linear  dark:bg-boxdark lg:static lg:translate-x-0 `,
+        `absolute left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 `,
         {
-          "w-70": isSidebarOpen,
+          'w-70': isSidebarOpen,
+          'max-md:w-0 w-20': !isSidebarOpen
         },
       )}
     >
@@ -32,13 +35,11 @@ const Sidebar = () => {
             alt="Logo"
           />
           {isSidebarOpen && (
-            <h1 className=" ml-2 text-xl font-semibold text-white">
-              JoshDev
-            </h1>
+            <h1 className=" ml-2 text-xl font-semibold text-white">JoshDev</h1>
           )}
         </Link>
         {isSidebarOpen && (
-          <FiMenu onClick={toggleSidebar} className="w-6 h-6" />
+          <FiMenu onClick={toggleSidebar} className="h-6 w-6 dark:text-body" />
         )}
       </div>
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
@@ -50,17 +51,19 @@ const Sidebar = () => {
               })}
             >
               <li>
-              <LinkItem
-                    icon={<MdOutlineDashboard size={23} />}
-                    title="Dashboard"
-                    href="/"
-                  />
+                <LinkItem
+                  icon={<MdOutlineDashboard size={23} />}
+                  title="Dashboard"
+                  href="/"
+                  disabled={isLinkDisabled}
+                />
               </li>
               <li>
                 <LinkItem
                   title="Settings"
                   href="/settings"
                   icon={<CiSettings size={25} />}
+                  disabled={isLinkDisabled}
                 ></LinkItem>
               </li>
               <li>
@@ -68,18 +71,16 @@ const Sidebar = () => {
                   title="Profile"
                   href="/profile"
                   icon={<CiUser size={25} />}
+                  disabled={isLinkDisabled}
                 ></LinkItem>
               </li>
               <li>
-                <ExpandMenu name="Auth" icon={<GrInsecure size={25} />}>
-                  <LinkItem
-                    title="Sign In"
-                    href="/auth/signin"
-                  ></LinkItem>
-                  <LinkItem
-                    title="Sign up"
-                    href="/auth/signup"
-                  ></LinkItem>
+                <ExpandMenu
+                  name="Authentication"
+                  icon={<GrInsecure size={25} />}
+                >
+                  <LinkItem title="Sign In" href="/auth/signin"></LinkItem>
+                  <LinkItem title="Sign up" href="/auth/signup"></LinkItem>
                 </ExpandMenu>
               </li>
             </ul>

@@ -24,19 +24,10 @@ const Header = (props: {
               aria-hidden={!isSidebarOpen}
               aria-controls="sidebar"
             >
-              <FiMenu className="h-6 w-6 dark:text-white" />
+              <FiMenu className="h-6 w-6 dark:text-body" />
             </button>
           )}
           {/* <!-- Hamburger Toggle BTN --> */}
-
-          <Link className="block flex-shrink-0 lg:hidden" href="/">
-            <Image
-              width={32}
-              height={32}
-              src={"/images/user/user-01.png"}
-              alt="Logo"
-            />
-          </Link>
         </div>
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">

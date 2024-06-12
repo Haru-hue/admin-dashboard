@@ -1,20 +1,40 @@
-"use client";
-import { useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
+import { useEffect, useState } from "react";
 
-const useColorMode = () => {
-  const [colorMode, setColorMode] = useLocalStorage("color-theme", "light");
+type ColorMode = 'light' | 'dark';
 
+const useColorMode = (): [ColorMode, () => void] => {
+  // State to store the current color mode
+  const [colorMode, setColorMode] = useState<ColorMode>('light');
+
+  // Effect to read the color mode from local storage or system preference
   useEffect(() => {
-    const className = "dark";
-    const bodyClass = window.document.body.classList;
+    const storedColorMode = localStorage.getItem('colorMode') as ColorMode;
+    const systemPreference: ColorMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setColorMode(storedColorMode || systemPreference);
+  }, []);
 
-    colorMode === "dark"
-      ? bodyClass.add(className)
-      : bodyClass.remove(className);
-  }, [colorMode]);
+  // Function to toggle the color mode
+  const toggleColorMode = () => {
+    const newColorMode: ColorMode = colorMode === 'light' ? 'dark' : 'light';
+    setColorMode(newColorMode);
+    localStorage.setItem('colorMode', newColorMode);
+    document.documentElement.classList.toggle('dark', newColorMode === 'dark');
+  };
 
-  return [colorMode, setColorMode];
+  // Effect to listen for system color scheme changes
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const newColorMode: ColorMode = e.matches ? 'dark' : 'light';
+      setColorMode(newColorMode);
+      localStorage.setItem('colorMode', newColorMode);
+      document.documentElement.classList.toggle('dark', newColorMode === 'dark');
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  return [colorMode, toggleColorMode];
 };
 
 export default useColorMode;

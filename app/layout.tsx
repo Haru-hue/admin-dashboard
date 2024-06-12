@@ -5,6 +5,8 @@ import Loader from "@/components/common/Loader";
 import Header from "@/components/Header";
 import Sidebar from "@/components/common/Sidebar";
 import { Providers } from "./providers";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
@@ -12,18 +14,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const [loading, setLoading] = useState<boolean>(true);
+  const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
+  useEffect(() => {
+    const pathsCanBeAccessedWithOutToken = ['/auth/signup'];
+    const isAccessibleWithOutToken = pathsCanBeAccessedWithOutToken.includes(pathname);
+    if (!IS_USER_TOKEN_AVAILABLE && !isAccessibleWithOutToken) {
+      router.push('/auth/signin');
+    }
+  }, [IS_USER_TOKEN_AVAILABLE]);
+
   return (
     <html lang="en">
       <body suppressHydrationWarning={true}>
         <Providers>
-          <div className="dark:bg-black dark:text-bodydark">
+          <div className="dark:bg-black dark:text-body">
             {loading ? (
               <Loader />
             ) : (

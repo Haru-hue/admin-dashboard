@@ -1,8 +1,7 @@
-import useLocalStorage from "@/hooks/useLocalStorage";
 import { API_LINK } from "@/lib";
 import axios from "axios";
 
-export const fetchAllUsers = async (token: string) => {
+export const fetchAllUsers = async (token: StoredValue) => {
   const BEARER_TOKEN = {
     headers: {
       Authorization: `Bearer ${token}`,

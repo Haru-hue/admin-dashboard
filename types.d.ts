@@ -50,8 +50,11 @@ type TableData = {
 }
 
 type Users = {
+  id?: string,
   firstname: string,
   lastname: string,
   email: string,
   createdAt: string,
 }
+
+type StoredValue = any;

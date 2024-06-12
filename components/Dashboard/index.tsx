@@ -9,24 +9,34 @@ import Loader from "../common/Loader";
 
 const Dashboard = () => {
   const [token] = useLocalStorage("userToken");
-  const allUsers = useQuery({ 
+  const [loggedInUser] = useLocalStorage("localUser");
+  const allUsers = useQuery({
     queryKey: ['users'],
     queryFn: () => fetchAllUsers(token),
-  })  
+  });
 
-  console.log(allUsers.data)
+  // Check if the logged-in user's role is not ADMIN
+  if (loggedInUser?.role !== 'ADMIN') {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <p className="text-xl font-semibold">You do not have access to this page.</p>
+      </div>
+    );
+  }
 
   return (
     <section>
-      {allUsers.isLoading ? <Loader/> : (
+      {allUsers.isLoading ? (
+        <Loader />
+      ) : (
         <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <div className="col-span-12 xl:col-span-8">
-          <div className="flex flex-col gap-10">
-            <Table columns={USERS_TABLE(allUsers?.data?.data?.data)} data={allUsers?.data?.data?.data}/>
+          <div className="col-span-12 xl:col-span-8">
+            <div className="flex flex-col gap-10">
+              <Table columns={USERS_TABLE(allUsers?.data?.data?.data)} data={allUsers?.data?.data?.data} />
+            </div>
           </div>
+          <ChatCard />
         </div>
-        <ChatCard />
-      </div>
       )}
     </section>
   );
