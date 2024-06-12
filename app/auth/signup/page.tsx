@@ -8,7 +8,6 @@ import { userSchema, userValues } from "@/lib/schema";
 import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "@/app/apis/account";
 import toast, { Toaster } from "react-hot-toast";
-import assignRandomRole from "@/utils/getRandomRole";
 import { useRouter } from "next/navigation";
 
 const SignUp = () => {
@@ -28,14 +27,16 @@ const SignUp = () => {
       return registerUser({
         ...formData,
         customerId: userId,
-        role: assignRandomRole(),
       });
     },
-    onSuccess: () => {
-      toast.success("User profile created successfully");
-      setTimeout(() => {
-        router.push("/auth/signin");
-      }, 1000);
+    onSuccess: (res) => {
+      if (res.data?.data) {
+        toast.success("User profile created successfully");
+        setTimeout(() => {
+          router.push("/");
+        }, 1000);
+      }
+      toast.error(res.data?.responseMessage);
     },
     onError: () => {
       toast.error("Error creating user profile");
@@ -44,7 +45,7 @@ const SignUp = () => {
 
   return (
     <section>
-      <Toaster />
+      <Toaster position="top-right" containerClassName="font-bold whitespace-nowrap" />
       <Breadcrumb pageName="Sign Up" />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">

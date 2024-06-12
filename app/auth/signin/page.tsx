@@ -37,7 +37,7 @@ const SignIn = () => {
   });
   return (
     <section>
-      <Toaster />
+      <Toaster position="top-right" containerClassName="font-bold whitespace-nowrap" />
       <Breadcrumb pageName="Sign In" />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
