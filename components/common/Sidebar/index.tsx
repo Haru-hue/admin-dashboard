@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import cn from "classnames";
 import { MdOutlineDashboard } from "react-icons/md";
 import { CiSettings, CiUser } from "react-icons/ci";
@@ -8,20 +7,17 @@ import { FiMenu } from "react-icons/fi";
 import { useSidebar } from "@/hooks/useSidebar";
 import ExpandMenu from "./ExpandMenu";
 import LinkItem from "./LinkItem";
-import useLocalStorage from "@/hooks/useLocalStorage";
-import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar((state) => state);
-  const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
-  const isLinkDisabled = !IS_USER_TOKEN_AVAILABLE;
+
   return (
     <aside
       className={cn(
         `absolute left-0 top-0 z-9999 flex h-screen flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 `,
         {
-          'w-70': isSidebarOpen,
-          'max-md:w-0 w-20': !isSidebarOpen
+          "w-70": isSidebarOpen,
+          "w-20 max-md:w-0": !isSidebarOpen,
         },
       )}
     >
@@ -49,7 +45,6 @@ const Sidebar = () => {
                   icon={<MdOutlineDashboard size={23} />}
                   title="Dashboard"
                   href="/"
-                  disabled={isLinkDisabled}
                 />
               </li>
               <li>
@@ -57,7 +52,6 @@ const Sidebar = () => {
                   title="Settings"
                   href="/settings"
                   icon={<CiSettings size={25} />}
-                  disabled={isLinkDisabled}
                 ></LinkItem>
               </li>
               <li>
@@ -65,7 +59,6 @@ const Sidebar = () => {
                   title="Profile"
                   href="/profile"
                   icon={<CiUser size={25} />}
-                  disabled={isLinkDisabled}
                 ></LinkItem>
               </li>
               <li>
