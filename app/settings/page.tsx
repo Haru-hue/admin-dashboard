@@ -35,7 +35,7 @@ const Settings = () => {
                     <div className="h-14 w-14 rounded-full">
                       <Image
                         className="rounded-full"
-                        src={"/images/sadmanJoshDev.jpg"}
+                        src={"/images/user/user-01.png"}
                         width={55}
                         height={55}
                         alt="User"

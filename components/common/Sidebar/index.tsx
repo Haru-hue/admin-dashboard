@@ -9,11 +9,12 @@ import { useSidebar } from "@/hooks/useSidebar";
 import ExpandMenu from "./ExpandMenu";
 import LinkItem from "./LinkItem";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const { isSidebarOpen, toggleSidebar } = useSidebar((state) => state);
   const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
-  const isLinkDisabled = IS_USER_TOKEN_AVAILABLE ? true : false;
+  const isLinkDisabled = !IS_USER_TOKEN_AVAILABLE;
   return (
     <aside
       className={cn(

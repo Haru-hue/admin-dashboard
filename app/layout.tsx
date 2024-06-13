@@ -18,26 +18,24 @@ export default function RootLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [IS_USER_TOKEN_AVAILABLE] = useLocalStorage('userToken');
-  const [colorMode] = useColorMode()
-  const router = useRouter()
-  const pathname = usePathname()
+  const [colorMode] = useColorMode();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
   useEffect(() => {
-    const pathsCanBeAccessedWithOutToken = ['/auth/signup'];
-    const isAccessibleWithOutToken = pathsCanBeAccessedWithOutToken.includes(pathname);
-    if (!IS_USER_TOKEN_AVAILABLE && !isAccessibleWithOutToken) {
+    const pathsCanBeAccessedWithoutToken = ['/auth/signup'];
+    const isAccessibleWithoutToken = pathsCanBeAccessedWithoutToken.includes(pathname);
+    if (!IS_USER_TOKEN_AVAILABLE && !isAccessibleWithoutToken) {
       router.push('/auth/signin');
     }
   }, [IS_USER_TOKEN_AVAILABLE, pathname]);
 
   return (
-    <html lang="en" className={cn(
-      colorMode === 'dark'? 'dark' : ''
-    )}>
+    <html lang="en" className={cn({ 'dark': colorMode === 'dark' })}>
       <body suppressHydrationWarning={true}>
         <Providers>
           <div className="dark:bg-black dark:text-bodydark">
@@ -47,10 +45,7 @@ export default function RootLayout({
               <div className="flex h-screen overflow-hidden">
                 <Sidebar />
                 <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
-                  <Header
-                    sidebarOpen={sidebarOpen}
-                    setSidebarOpen={setSidebarOpen}
-                  />
+                  <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
                   <main>
                     <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
                       {children}
